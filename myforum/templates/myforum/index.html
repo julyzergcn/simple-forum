@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div id="main">
+    <div class="main_middle">
+        <div class="forum-container clearfix">
+            <div class="topics-container">
+                <div id="yw0" class="list-view">
+                    <div class="items">
+                        
+                        <div class="topic clearfix odd">
+                            <h4 class="topic-title"><a href="#">"Pay" account signup</a></h4>
+                            <h4 class="topic-description">Appears to be broken... :(</h4>
+                            <ul class="topic-meta">
+                                <li class="topic-meta-item"> Created by  abc</li>
+                                <li class="topic-meta-item">on 5/12/12</li>
+                                <li class="topic-meta-item">5 posts</li>
+                            </ul>
+                        </div>
+                        
+                    </div> <!-- .items -->
+                    
+                    <div class="pager">
+                        <ul id="yw1" class="yiiPager">
+                            <li class="first hidden"><a href="#">&lt;&lt; First</a></li>
+                            <li class="previous hidden"><a href="#"><span class="pagination-left"></span></a></li>
+                            <li class="page selected"><a href="#">1</a></li>
+                            <li class="page"><a href="#">2</a></li>
+                            <li class="next"><a href="#"><span class="pagination-right"></span></a></li>
+                            <li class="last hidden"><a href="#">Last &gt;&gt;</a></li>
+                        </ul>
+                    </div>
+                </div> <!-- .list-view -->
+            </div> <!-- .topic-container -->
+        </div> <!-- .forum-container -->
+    </div> <!-- .main_middle -->
+</div> <!-- #main -->
+
+<div id="sidebar">
+    <!-- <div class="sidebar_top"></div> -->
+    <div class="sidebar_middle">
+        <div class="sidebar-nav">
+            <div id="yw2" class="portlet">
+                <div class="nav nav-list">
+                    <div class="nav-header">Forums</div>
+                </div>
+                <div class="portlet-content">
+                    <form method="POST" action="#" onsubmit="return false" id="keywordSearch">
+                    <div style="display:none"><input type="hidden" name="YII_CSRF_TOKEN" value="19f602c50f87a16d00be2f5b7b116dd972f641eb"></div><div class="search-container">
+                        <input type="text" placeholder="Search..." value="" class="search_box" name="forumSearchKeyword">
+                        <a href="#" title="Cancel Search" class="cancel-search" style="display:none">x</a>
+                    </div>
+                    </form>
+                </div> <!-- .portlet-content -->
+            </div> <!-- .portlet -->
+        
+            <div id="yw3" class="portlet">
+                <div class="portlet-content">
+                    <div class="list-view" id="yw4">
+                        <div class="summary"></div>
+                        <ul class="nav nav-list">
+                            <li><a href="#">Feature Requests</a><span class="topics-count">10</span></li>
+                            <li><a href="#">Bugs</a><span class="topics-count">10</span></li>
+                        </ul>
+                    </div> <!-- .list-view -->
+                </div> <!-- .portlet-content -->
+            </div> <!-- .portlet -->
+        </div> <!-- .sidebar-nav -->
+        
+        <div class="sidebar-nav">
+            <ul id="yw6" class="nav nav-list">
+                <li class="nav-header"><span>Menu</span></li>
+            </ul>
+        </div> <!-- .sidebar-nav -->
+    </div> <!-- .sidebar_middle -->
+    <!-- <div class="sidebar_bottom"></div> -->
+</div> <!-- #sidebar -->
+
+<div class="clear"></div>
+
+{% endblock %}

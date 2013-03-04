@@ -1,0 +1,58 @@
+* {border: 0 none; margin: 0; padding: 0;}
+.clear {clear: both; height: 0; line-height: 0; width: 0;}
+a {color: #0088CC; text-decoration: none;}
+.clearfix:before, .clearfix:after {clear: both; content: ""; display: table;}
+body {background-color: #F9F9F9; font-family: Arial; font-size: 12px;}
+html, body {height: 100%; width: 100%;}
+
+#main-wrapper {height: auto; min-height: 100%; position: relative; }
+#header {background-color: #2877C4; height: 60px; min-width: 980px; width: 100%;}
+#header .wrapper {height: 100%; margin: 0 auto; width: 943px;}
+#logo {display: block; float: left; height: 33px; margin-top: 12px; width: 132px; color: #F3F3F3; font-weight: bold; font-size: 18px;}
+
+#content {margin: 40px auto 0; padding-bottom: 121px; width: 982px;}
+#main {float: left; width: 723px;}
+#main:before, #main:after {content: ""; display: block; height: 6px; width: 723px;}
+.main_middle {padding: 4px 10px; width: 701px;}
+.forum-container {border: 1px solid #F1F1F1; border-radius: 4px; padding: 10px;}
+.topics-container {margin: -10px;}
+.topic {border-bottom: 1px solid #F1F1F1; padding: 14px 20px;}
+.topic .odd {background-color: #FBFDFF;}
+.topic-title, .topic-title a {color: #59677A; font-size: 15px; height: auto; line-height: 100%; margin-bottom: 5px;}
+.topic-description {color: #889099; font-size: 12px; position: relative;}
+.topic-meta {overflow: hidden;}
+.topic-meta-item {color: #889099; float: left; font-size: 12px; position: relative; margin-left: 18px;}
+.topic-meta-item:before {content: "•"; display: block; font-size: 12px; left: -11px; position: absolute; top: 0;}
+.topic-meta-item:first-child {margin-left: 0;}
+
+.list-view .pager {margin: 5px 0 0; text-align: right;}
+.pager {list-style: none outside none;}
+ul.yiiPager {border: 0 none; display: inline; font-size: 11px; line-height: 100%; margin: 0; padding: 0;}
+ul {list-style: disc outside none;}
+li {list-style: none outside none;}
+.hidden {display: none;}
+ul.yiiPager li.hidden {display: none;}
+ul.yiiPager li {display: inline;}
+ul.yiiPager .page a {font-weight: bold; border: 1px solid #BEBEBE; color: #626262; padding: 3px 8px; background-color: #F4F4F4; border-radius: 2px 2px 2px 2px; box-shadow: 0 0 2px #CCCCCC; }
+ul.yiiPager .selected a {background-color: #666666; border: 1px solid #666666; color: #FFFFFF;}
+
+#sidebar {float: right; width: 242px; border: 1px solid #E5E5E5; border-radius: 5px;}
+#sidebar:before, #sidebar:after {content: ""; display: block; height: 13px; width: 242px;}
+.sidebar_middle {padding-left: 15px; padding-right: 15px; width: 213px;}
+.nav-list {padding-left: 0; padding-right: 0;}
+.nav {list-style: none outside none; margin-left: 0; margin-bottom: 18px;}
+.nav-header {margin-left: -15px; margin-right: -15px; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);}
+.nav .nav-header {color: #999999; display: block; font-size: 11px; font-weight: bold; line-height: 18px; padding: 3px 15px; text-transform: uppercase;}
+.portlet-content {font-size: 0.9em; margin: 0 0 15px;}
+.search-container {position: relative;}
+#sidebar .search_box {border: medium none; color: #BFBFBF; display: block; font-size: 13px; height: 30px; line-height: 30px; margin: 10px 0 15px 20px; padding: 0 17px 0 33px; transition: none 0s ease 0s; width: 131px;}
+input[type="text"], input[type="password"], textarea {background-clip: padding-box; border: 1px solid #E6E6E6; border-radius: 5px 5px 5px 5px; color: black; font: 14px Arial,Helvetica,sans-serif; padding: 4px; width: 210px;}
+a.cancel-search { display: block; height: 16px; left: 177px; outline: medium none !important; position: absolute; text-indent: -9999px; top: 7px; width: 16px;}
+.list-view .summary {margin: 0; text-align: right;}
+.portlet-content ul {list-style: none outside none; margin: 0; padding: 0;}
+.sidebar-nav .nav-list li:first-child {border-top: 1px solid #F1F1F1;}
+.nav-list li {border-bottom: 1px solid #F1F1F1; height: 28px; line-height: 28px; overflow: hidden;}
+.portlet-content li {padding-top: 0;}
+.nav-list li a {color: #56A8EE; float: left; font-size: 11px; font-weight: bold; margin: 0; padding: 0;}
+.nav-list li .topics-count {background: none repeat scroll 0 0 #F1F1F1; border-radius: 5px 5px 5px 5px; color: #59677A; display: block; float: right; font-size: 10px; font-weight: bold; line-height: 100%; margin-top: 5px; padding: 4px 5px;}
+
