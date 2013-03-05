@@ -9,15 +9,17 @@
                 <div id="yw0" class="list-view">
                     <div class="items">
                         
+                        {% for forum in forums %}
                         <div class="topic clearfix odd">
-                            <h4 class="topic-title"><a href="#">"Pay" account signup</a></h4>
-                            <h4 class="topic-description">Appears to be broken... :(</h4>
-                            <ul class="topic-meta">
-                                <li class="topic-meta-item"> Created by  abc</li>
+                            <h4 class="topic-title"><a href="#">{{ forum.title }}</a></h4>
+                            <h4 class="topic-description">{{ forum.description }}</h4>
+                            <!-- <ul class="topic-meta">
+                                <li class="topic-meta-item"> Created by  {{</li>
                                 <li class="topic-meta-item">on 5/12/12</li>
                                 <li class="topic-meta-item">5 posts</li>
-                            </ul>
+                            </ul> -->
                         </div>
+                        {% endfor %}
                         
                     </div> <!-- .items -->
                     

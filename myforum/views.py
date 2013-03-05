@@ -1,5 +1,10 @@
 from django.shortcuts import render
+from myforum.models import Forum, Topic, Post
 
 
 def index(request):
-    return render(request, 'myforum/index.html')
+    context = {
+        'forums': Forum.objects.all(),
+    }
+    return render(request, 'myforum/index.html', context)
+
