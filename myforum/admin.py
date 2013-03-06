@@ -7,12 +7,12 @@ admin.site.register(Forum)
 class PostInline(admin.TabularInline):
     model = Post
     extra = 0
-    exclude = ('created_by', )
+    fields = ('content', 'status', 'created_by')
     verbose_name_plural = 'Posts for this topic'
 
 admin.site.register(Topic,
     inlines = (PostInline, ),
-    fields = ('forum', 'title', 'description', 'created_by'),
+    fields = ('forum', 'title', 'description', 'status', 'created_by'),
 )
 
 admin.site.register(UserProfile)

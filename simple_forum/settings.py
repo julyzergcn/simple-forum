@@ -3,6 +3,8 @@ from os.path import dirname, abspath, join
 
 ROOT = dirname(abspath(__file__))
 
+DATE_FORMAT = 'j/n/y'
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
