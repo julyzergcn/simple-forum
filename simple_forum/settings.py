@@ -1,4 +1,4 @@
-
+import dj_database_url
 from os.path import dirname, abspath, join
 
 ROOT = dirname(abspath(__file__))
@@ -25,6 +25,8 @@ DATABASES = {
         'PORT': '',                      # Set to empty string for default.
     }
 }
+
+DATABASES = {'default': dj_database_url.config()}
 
 # Hosts/domain names that are valid for this site; required if DEBUG is False
 # See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
