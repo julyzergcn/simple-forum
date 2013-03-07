@@ -4,3 +4,4 @@ dj-database-url==0.2.1
 django-extensions==1.1.0
 gunicorn==0.17.2
 six==1.2.0
+psycopg2==2.4.6
