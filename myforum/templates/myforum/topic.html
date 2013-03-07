@@ -4,22 +4,22 @@
 
 
 <div class="topic-header">
-    <h3 class="topic-title">{{ topic.title }}</h3>
-    <p class="topic-description">{{ topic.description }}</p>
+    <h3 class="topic-title">{{ current_topic.title }}</h3>
+    <p class="topic-description">{{ current_topic.description }}</p>
     <ul class="topic-meta">
-        <li class="topic-meta-item"> Created by  {{ topic.created_by }}</li>
-        <li class="topic-meta-item">on {{ topic.created|date:"j/n/y" }}</li>
-        <li class="topic-meta-item">{{ topic.posts|length }} posts</li>
+        <li class="topic-meta-item"> Created by  {{ current_topic.created_by }}</li>
+        <li class="topic-meta-item">on {{ current_topic.created|date:"j/n/y" }}</li>
+        <li class="topic-meta-item">{{ current_topic.posts|length }} posts</li>
     </ul>
 </div>
 
 <div class="list-view" id="post-list">
     <div class="items">
     
-    {% for post in topic.posts %}
+    {% for post in current_topic.posts %}
         <div class="topic-comment clearfix">
             <div class="avatar">
-                <a href="#"><img class="avatar-img" src="{{ post.avatar_url }}"></a>
+                <a href="#"><img class="avatar-img" src="{{ post.avatar_url }}" style="width:31px"></a>
             </div>
             <div class="comment-data">
                 <h4 class="comment-author"><a href="#">{{ post.created_by }}</a></h4>
@@ -34,6 +34,13 @@
     </div> <!-- .items -->
 </div> <!-- #post-list -->
 
-<a href="#" class="btn btn-primary btn-toolbar">New Post</a>
+<div style="padding-top:20px">
+<form method="post" action="">
+    {% csrf_token %}
+    <textarea name="post" style="width:500px;height:80px"></textarea>
+    <br />
+    <input type="submit" value="New Post" class="btn btn-primary btn-toolbar" />
+</form>
+</div>
 
 {% endblock %}
