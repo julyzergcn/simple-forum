@@ -2,7 +2,7 @@ import dj_database_url
 from os.path import dirname, abspath, join
 
 
-ENDLESS_PAGINATION_PER_PAGE = 2
+ENDLESS_PAGINATION_PER_PAGE = 10
 
 ROOT = dirname(abspath(__file__))
 
