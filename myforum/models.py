@@ -15,7 +15,7 @@ class UserProfile(models.Model):
         return self.user.username
 
 class Forum(TitleSlugDescriptionModel):
-    order = models.IntegerField(default=0)
+    order = models.IntegerField(default=9)
     
     def __unicode__(self):
         return self.title
@@ -26,7 +26,7 @@ class Forum(TitleSlugDescriptionModel):
 class Topic(TimeStampedModel, TitleSlugDescriptionModel, ActivatorModel):
     forum = models.ForeignKey(Forum)
     created_by = models.ForeignKey(User)
-    order = models.IntegerField(default=0)
+    order = models.IntegerField(default=9)
     
     def __unicode__(self):
         return self.title
