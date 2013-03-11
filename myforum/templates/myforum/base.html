@@ -22,10 +22,9 @@
                     <div class="nav-header">Forums</div>
                 </div>
                 <div class="portlet-content">
-                    <form method="POST" action="#" onsubmit="return false" id="keywordSearch">
-                    <div style="display:none"><input type="hidden" name="YII_CSRF_TOKEN" value="19f602c50f87a16d00be2f5b7b116dd972f641eb"></div><div class="search-container">
-                        <input type="text" placeholder="Search..." value="" class="search_box" name="forumSearchKeyword">
-                        <a href="#" title="Cancel Search" class="cancel-search" style="display:none">x</a>
+                    <form method="POST" action="{% url 'myforum:search' %}" id="keywordSearch">
+                        {% csrf_token %}
+                        <input type="text" placeholder="Search..." class="search_box" name="kw" style="background: url('{{ STATIC_URL }}myforum/search_box_bg.png') no-repeat scroll 0 0 transparent" />
                     </div>
                     </form>
                 </div> <!-- .portlet-content -->
@@ -36,19 +35,15 @@
                     <div class="list-view" id="yw4">
                         <div class="summary"></div>
                         <ul class="nav nav-list">
-                            <li><a href="#">Feature Requests</a><span class="topics-count">10</span></li>
-                            <li><a href="#">Bugs</a><span class="topics-count">10</span></li>
+                        {% for forum in forums %}
+                            <li><a href="{{ forum.get_absolute_url }}">{{ forum.title }}</a><span class="topics-count">{{ forum.topics_count }}</span></li>
+                        {% endfor %}
                         </ul>
                     </div> <!-- .list-view -->
                 </div> <!-- .portlet-content -->
             </div> <!-- .portlet -->
         </div> <!-- .sidebar-nav -->
         
-        <div class="sidebar-nav">
-            <ul id="yw6" class="nav nav-list">
-                <li class="nav-header"><span>Menu</span></li>
-            </ul>
-        </div> <!-- .sidebar-nav -->
     </div> <!-- .sidebar_middle -->
     <!-- <div class="sidebar_bottom"></div> -->
 </div> <!-- #sidebar -->

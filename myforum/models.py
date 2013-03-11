@@ -14,7 +14,7 @@ class UserProfile(models.Model):
     def __unicode__(self):
         return self.user.username
 
-class Forum(TitleSlugDescriptionModel):
+class Forum(TitleSlugDescriptionModel, ActivatorModel):
     order = models.IntegerField(default=9)
     
     def __unicode__(self):
@@ -22,6 +22,13 @@ class Forum(TitleSlugDescriptionModel):
     
     class Meta:
         ordering = ('order', )
+    
+    @models.permalink
+    def get_absolute_url(self):
+        return ('myforum:forum', [self.slug])
+    
+    def topics_count(self):
+        return models.get_model('myforum', 'topic').objects.active().filter(forum=self).count()
 
 class Topic(TimeStampedModel, TitleSlugDescriptionModel, ActivatorModel):
     forum = models.ForeignKey(Forum)
@@ -50,7 +57,7 @@ class Post(TimeStampedModel, ActivatorModel):
         return self.created_by.username + ' said:'
     
     class Meta:
-        ordering = ('created', )
+        ordering = ('-created', )
     
     def avatar_url(self):
         try:
