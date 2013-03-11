@@ -2,7 +2,11 @@ from django.contrib import admin
 from myforum.models import Forum, Topic, Post, UserProfile
 
 
-admin.site.register(Forum)
+admin.site.register(Forum,
+    list_display = ('title', 'status', 'order'),
+    list_editable = ('order', ),
+    fields = ('title', 'description', 'status'),
+)
 
 class PostInline(admin.TabularInline):
     model = Post
