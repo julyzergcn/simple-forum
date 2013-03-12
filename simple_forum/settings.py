@@ -174,10 +174,10 @@ LOGGING = {
     }
 }
 
-from django.core.urlresolvers import reverse
-LOGIN_URL = reverse('myforum:login')
-
 try:
     from settings_local import *
 except ImportError:
     pass
+
+from django.core.urlresolvers import reverse
+LOGIN_URL = reverse('myforum:login')
