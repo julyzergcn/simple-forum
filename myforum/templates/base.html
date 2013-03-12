@@ -16,6 +16,16 @@
             <!-- <img src="/images/logo.png"> -->
             Simple Forum
         </a>
+        
+        <div style="float:right; margin:10px 20px 0 0; color:#fff">
+            {% if user.is_authenticated %}
+                Welcome {{ user.get_full_name|default:user.username }}. 
+                <a href="{% url 'myforum:logout' %}?next={{ request.get_full_path }}" style="color:#fff; text-decoration:underline">Logout</a>
+            {% else %}
+                <a href="{% url 'myforum:login' %}?next={{ request.get_full_path }}" style="color:#fff; text-decoration:underline">Login</a>
+            {% endif %}
+        </div>
+        
         <div class="clear"></div>
     </div><!-- .wrapper -->
 </div> <!-- #header -->

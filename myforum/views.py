@@ -1,9 +1,23 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, resolve_url
 from django.views.decorators.http import require_POST
-
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout as auth_logout
+from django.contrib.auth.views import login as auth_login
+from django.contrib.auth.forms import AuthenticationForm
 from myforum.models import Forum, Topic, Post
-from myforum.utils import login_view
+from myforum.templatetags.myforum_tags import can_edit, can_delete
 
+
+def login(request):
+    defaults = {
+        'template_name': 'admin/login.html',
+        'authentication_form': AuthenticationForm,
+    }
+    return auth_login(request, **defaults)
+
+def logout(request):
+    auth_logout(request)
+    return redirect(request.GET.get('next') or 'myforum:index')
 
 def index(request):
     '''
@@ -34,7 +48,7 @@ def topic_detail(request, slug):
     # create new post
     if request.method == 'POST':
         if not request.user.is_authenticated():
-            return login_view(request)
+            return redirect(resolve_url('myforum:login')+'?next='+request.get_full_path())
         
         post = request.POST.get('post', '').strip()
         if len(post) > 0:
@@ -68,3 +82,13 @@ def search(request):
         'topics_searched': topics_searched,
     }
     return render(request, 'myforum/topics_searched.html', context)
+
+@login_required
+def delete_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    topic = post.topic
+    if can_delete(request.user, post):
+        #~ post.status = Post.INACTIVE_STATUS
+        #~ post.save(update_fields=['status'])
+        post.delete()
+    return redirect(request.GET.get('next') or topic)

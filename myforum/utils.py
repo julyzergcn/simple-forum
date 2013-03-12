@@ -5,6 +5,7 @@ from django.contrib.auth import REDIRECT_FIELD_NAME
 
 
 def login_view(request):
+    '''non-redirect version login view function'''
     defaults = {
         'template_name': 'admin/login.html',
         'authentication_form': AdminAuthenticationForm,
@@ -15,3 +16,11 @@ def login_view(request):
         },
     }
     return login(request, **defaults)
+
+def login_required(view_func):
+    '''non-redirect version login_required decorator'''
+    def _wrapped_view(request, *args, **kwargs):
+        if request.user.is_authenticated():
+            return view_func(request, *args, **kwargs)
+        return login_view(request)
+    return _wrapped_view

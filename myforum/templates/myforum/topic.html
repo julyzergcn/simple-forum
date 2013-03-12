@@ -34,7 +34,7 @@
                         <a href="#" style="color:#889099">Edit</a> &nbsp; &nbsp;
                     {% endif %}
                     {% if user|can_delete:post %}
-                        <a href="#" onclick="return confirm('Are you sure?')" style="color:#889099">Delete</a>
+                        <a href="{% url 'myforum:delete_post' post.pk %}" onclick="return confirm('Are you sure?')" style="color:#889099">Delete</a>
                     {% endif %}
                 </p>
             </div> <!-- .comment-data -->
@@ -47,7 +47,7 @@
 <div style="padding-top:20px" id="new_post">
 <form method="post" action="">
     {% csrf_token %}
-    <textarea name="post" style="width:500px;height:80px"></textarea>
+    <textarea name="post" style="width:500px;height:80px" placeholder="Post a reply ..."></textarea>
     <br />
     <input type="submit" value="New Post" class="btn btn-primary btn-toolbar" />
 </form>

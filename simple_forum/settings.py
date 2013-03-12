@@ -1,9 +1,6 @@
 import dj_database_url
 from os.path import dirname, abspath, join
 
-
-ENDLESS_PAGINATION_PER_PAGE = 10
-
 ROOT = dirname(abspath(__file__))
 
 DATE_FORMAT = 'j/n/y'
@@ -176,6 +173,9 @@ LOGGING = {
         },
     }
 }
+
+from django.core.urlresolvers import reverse
+LOGIN_URL = reverse('myforum:login')
 
 try:
     from settings_local import *
