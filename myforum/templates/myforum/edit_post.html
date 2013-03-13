@@ -1,0 +1,16 @@
+{% load myforum_tags %}
+
+<div>
+<form method="post" action="">
+    {% csrf_token %}
+    <textarea name="content" style="width:500px;height:200px;color:#889099">{{ post.content }}</textarea>
+    <br />
+    <input type="submit" value="Update" />
+</form>
+</div>
+
+{% if saved %}
+<script type="text/javascript">
+window.close();
+</script>
+{% endif %}

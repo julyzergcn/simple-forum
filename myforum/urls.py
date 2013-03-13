@@ -10,5 +10,6 @@ urlpatterns = patterns('myforum.views',
     url(r'^topic/(?P<slug>[\w-]+)/$', 'topic_detail', name='topic'),
     url(r'^search/$', 'search', name='search'),
     url(r'^post/(\d+)/delete/$', 'delete_post', name='delete_post'),
+    url(r'^post/(\d+)/edit/$', 'edit_post', name='edit_post'),
     
 )

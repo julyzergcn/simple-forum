@@ -1,4 +1,5 @@
 from django.template import Library
+from django.utils.html import linebreaks as html_linebreaks
 
 
 register = Library()
@@ -15,3 +16,7 @@ def can_edit(value, arg):
 @register.filter
 def can_delete(value, arg):
     return can_edit(value, arg)
+
+@register.filter
+def linkbreaks(value):
+    return html_linebreaks(value)

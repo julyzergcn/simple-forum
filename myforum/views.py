@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect, resolve_url
+from django.http import Http404
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as auth_logout
@@ -92,3 +93,17 @@ def delete_post(request, pk):
         #~ post.save(update_fields=['status'])
         post.delete()
     return redirect(request.GET.get('next') or topic)
+
+@login_required
+def edit_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    context = {'post': post}
+    
+    if not can_edit(request.user, post):
+        raise Http404('No rights to edit post')
+    if request.method == 'POST' and 'content' in request.POST:
+        post.content = request.POST['content']
+        post.save(update_fields=['content'])
+        context['saved'] = 'saved'
+    
+    return render(request, 'myforum/edit_post.html', context)
