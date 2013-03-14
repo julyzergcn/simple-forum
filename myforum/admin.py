@@ -1,6 +1,19 @@
 from django.contrib import admin
-from myforum.models import Forum, Topic, Post, UserProfile
+from myforum.models import Forum, Topic, Post, UserProfile, AWS
 
+class AWSAdmin(admin.ModelAdmin):
+    list_display = ('key', 'value')
+    list_editable = ('value', )
+    list_display_links = ()
+    
+    def get_actions(self, request):
+        return []
+    
+    def delete_model(self, request, obj):
+        if obj.key not in ('AWS_ACCESS_KEY_ID', 'AWS_SECRET_ACCESS_KEY'):
+            obj.delete()
+
+admin.site.register(AWS, AWSAdmin)
 
 admin.site.register(Forum,
     list_display = ('title', 'status', 'order'),

@@ -5,7 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.views import login as auth_login
 from django.contrib.auth.forms import AuthenticationForm
-from myforum.models import Forum, Topic, Post
+from django.core.validators import email_re
+from myforum.models import Forum, Topic, Post, AWS
 from myforum.templatetags.myforum_tags import can_edit, can_delete
 
 
@@ -53,7 +54,22 @@ def topic_detail(request, slug):
         
         post = request.POST.get('post', '').strip()
         if len(post) > 0:
+            is_first_time_post = current_topic.is_first_time_post_by(request.user)
             Post.objects.create(topic=current_topic, content=post, created_by=request.user)
+            
+            try:
+                arn = current_topic.arn.strip()
+                email = request.user.email
+                if len(arn) > 0 and email_re.search(email):
+                    import boto
+                    conn = boto.connect_sns(AWS.access_key(), AWS.access_key_secret())
+                    if is_first_time_post:
+                        conn.subscribe(arn, 'email', email)
+                    myname = request.user.get_full_name() or request.user.username
+                    myname = myname.encode('utf8')
+                    conn.publish(arn, myname+' said: \n\n'+post.encode('utf8'), myname+' reply to '+current_topic.title.encode('utf8'))
+            except:
+                raise
         return redirect('myforum:topic', slug=slug)
     
     context = {
