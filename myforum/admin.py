@@ -30,7 +30,7 @@ class PostInline(admin.TabularInline):
 class TopicAdmin(admin.ModelAdmin):
     inlines = (PostInline, )
     fields = ('forum', 'title', 'description', 'status')
-    list_display = ('title', 'status', 'created_by', 'order')
+    list_display = ('title', 'status', 'created_by', 'order', 'arn')
     list_editable = ('order', )
     
     def save_model(self, request, obj, form, change):
