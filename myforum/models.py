@@ -78,7 +78,7 @@ class Topic(TimeStampedModel, TitleSlugDescriptionModel, ActivatorModel):
         try:
             import boto
             conn = boto.connect_sns(AWS.access_key(), AWS.access_key_secret())
-            res = conn.create_topic(self.title.encode('utf8'))
+            res = conn.create_topic(self.slug.encode('utf8'))
             arn = res['CreateTopicResponse']['CreateTopicResult']['TopicArn']
             self.arn = arn
             super(Topic, self).save(update_fields=['arn'])
