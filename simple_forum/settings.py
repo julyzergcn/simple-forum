@@ -141,6 +141,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'endless_pagination',
     'gunicorn',
+    'django_reset',
     'south',
     'myforum',
 )

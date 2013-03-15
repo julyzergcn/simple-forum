@@ -1,0 +1,16 @@
+{% extends 'myforum/base.html' %}
+
+{% block main %}
+<div>
+<form method="post" action="">
+{% csrf_token %}
+<label>Title: <br /><input type="text" name="title" /></label>
+<br />
+<br />
+<label>Content: <br /><textarea name="content" style="width:500px;height:80px;color:#889099"></textarea></label>
+<br />
+<br />
+<input type="submit" value="New Topic" class="btn btn-primary btn-toolbar" />
+</form>
+</div>
+{% endblock %}

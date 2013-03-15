@@ -2,20 +2,53 @@ from django.shortcuts import render, get_object_or_404, redirect, resolve_url
 from django.http import Http404
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout as auth_logout
-from django.contrib.auth.views import login as auth_login
+from django.contrib.auth import logout as auth_logout, login as auth_login, authenticate
+from django.contrib.auth.views import login as auth_login_view
 from django.contrib.auth.forms import AuthenticationForm
 from django.core.validators import email_re
+from django.contrib.auth.models import User
+
 from myforum.models import Forum, Topic, Post, AWS
 from myforum.templatetags.myforum_tags import can_edit, can_delete
 
 
+def signup(request):
+    if request.method == 'POST':
+        data = request.POST
+        if 'email' in data and email_re.search(data['email']):
+            username = data.get('username', '')
+            password = data.get('password', '')
+            email = data['email']
+            User.objects.create_user(username, email, password)
+            return redirect('myforum:index')
+    
+    return render(request, 'myforum/signup.html')
+
 def login(request):
+    if request.method == 'POST':
+        data = request.POST
+        if 'email' in data and email_re.search(data['email']):
+            password = data.get('password', '')
+            email = data['email']
+            try:
+                user = User.objects.get(email=email)
+            except User.DoesNotExist:
+                raise Http404('User does not exist')
+            user = authenticate(username=user.username, password=password)
+            if user:
+                auth_login(request, user)
+            else:
+                raise Http404('Invalid password')
+            return redirect('myforum:index')
+    
+    return render(request, 'myforum/login.html')
+
+def login_with_username(request):
     defaults = {
         'template_name': 'admin/login.html',
         'authentication_form': AuthenticationForm,
     }
-    return auth_login(request, **defaults)
+    return auth_login_view(request, **defaults)
 
 def logout(request):
     auth_logout(request)
@@ -69,7 +102,7 @@ def topic_detail(request, slug):
                     myname = myname.encode('utf8')
                     conn.publish(arn, myname+' said: \n\n'+post.encode('utf8'), myname+' reply to '+current_topic.title.encode('utf8'))
             except:
-                raise
+                pass
         return redirect('myforum:topic', slug=slug)
     
     context = {
@@ -123,3 +156,16 @@ def edit_post(request, pk):
         context['saved'] = 'saved'
     
     return render(request, 'myforum/edit_post.html', context)
+
+@login_required
+def new_topic(request):
+    if request.method == 'POST':
+        data = request.POST
+        if 'title' in data and len(data['title'].strip()) > 0:
+            title = data['title']
+            content = data.get('content', '')
+            topic = Topic(title=title, description=content, created_by=request.user)
+            topic.save()
+            return redirect('myforum:topic', slug=topic.slug)
+    
+    return render(request, 'myforum/new_topic.html')

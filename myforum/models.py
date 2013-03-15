@@ -50,7 +50,7 @@ class Forum(TitleSlugDescriptionModel, ActivatorModel):
         return models.get_model('myforum', 'topic').objects.active().filter(forum=self).count()
 
 class Topic(TimeStampedModel, TitleSlugDescriptionModel, ActivatorModel):
-    forum = models.ForeignKey(Forum)
+    forum = models.ForeignKey(Forum, null=True, blank=True)
     created_by = models.ForeignKey(User)
     order = models.IntegerField(default=9)
     arn = models.CharField(max_length=200, blank=True)
@@ -83,7 +83,7 @@ class Topic(TimeStampedModel, TitleSlugDescriptionModel, ActivatorModel):
             self.arn = arn
             super(Topic, self).save(update_fields=['arn'])
         except:
-            raise
+            pass
 
 class Post(TimeStampedModel, ActivatorModel):
     topic = models.ForeignKey(Topic)
