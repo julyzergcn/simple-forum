@@ -19,7 +19,7 @@
         <div class="sidebar-nav">
             <div id="yw2" class="portlet">
                 <div class="nav nav-list">
-                    <div class="nav-header">Forums</div>
+                    <a href="{% url 'myforum:index' %}" class="nav-header">Forums</a>
                 </div>
                 <div class="portlet-content">
                     <form method="POST" action="{% url 'myforum:search' %}" id="keywordSearch">
@@ -43,9 +43,11 @@
         </div> <!-- .sidebar-nav -->
         
         {% if user.is_authenticated %}
+        {% if current_forum %}
         <div>
-            <a href="{% url 'myforum:new_topic' %}" >New Topic</a>
+            <a href="{% url 'myforum:new_topic' %}?f={{ current_forum.slug }}" >New Topic</a>
         </div>
+        {% endif %}
         {% endif %}
         
     </div> <!-- .sidebar_middle -->

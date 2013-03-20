@@ -1,7 +1,14 @@
 {% extends 'myforum/base.html' %}
 
 {% block main %}
-<div>
+   {% if current_forum %}
+    <div class="forum-header" style="border-bottom: 1px solid #F1F1F1; margin: -10px -10px 10px; padding: 25px 20px;">
+        <h3 class="forum-title" style="font-size: 20px;color: #59677A; font-weight: bold; height: 40px; line-height: 40px;">{{ current_forum.title }}</h3>
+        {{ current_forum.description }}
+    </div>
+    {% endif %}
+    
+<div style="padding: 25px 20px;margin: -10px">
 <form method="post" action="">
 {% csrf_token %}
 <label>Title: <br /><input type="text" name="title" /></label>

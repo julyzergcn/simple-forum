@@ -69,6 +69,7 @@ def forum_detail(request, slug):
     '''
     current_forum = get_object_or_404(Forum.objects.active(), slug=slug)
     context = {
+        'current_forum': current_forum,
         'topics': Topic.objects.active().filter(forum=current_forum),
     }
     return render(request, 'myforum/index.html', context)
@@ -159,13 +160,19 @@ def edit_post(request, pk):
 
 @login_required
 def new_topic(request):
+    slug = request.REQUEST.get('f', '')
+    current_forum = get_object_or_404(Forum, slug=slug)
+    
     if request.method == 'POST':
         data = request.POST
         if 'title' in data and len(data['title'].strip()) > 0:
             title = data['title']
             content = data.get('content', '')
-            topic = Topic(title=title, description=content, created_by=request.user)
+            topic = Topic(title=title, description=content, created_by=request.user, forum=current_forum)
             topic.save()
             return redirect('myforum:topic', slug=topic.slug)
     
-    return render(request, 'myforum/new_topic.html')
+    context = {
+        'current_forum': current_forum,
+    }
+    return render(request, 'myforum/new_topic.html', context)
