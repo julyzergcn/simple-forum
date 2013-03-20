@@ -12,7 +12,7 @@ html, body {height: 100%; width: 100%;}
 #logo {display: block; float: left; height: 33px; margin-top: 12px; width: 132px; color: #F3F3F3; font-weight: bold; font-size: 18px;}
 
 #content {margin: 40px auto 0; padding-bottom: 121px; width: 982px;}
-#main {float: left; width: 723px; background-color: #FFF;}
+#main {float: left; width: 723px; background-color: #FFF; box-shadow: 1px 1px 3px #888888;}
 #main:before, #main:after {content: ""; display: block; height: 6px; width: 723px;}
 .main_middle {padding: 4px 10px; width: 701px;}
 .forum-container {border: 1px solid #F1F1F1; border-radius: 4px; padding: 10px;}
@@ -44,7 +44,7 @@ ul.yiiPager li {display: inline;}
 ul.yiiPager .page a {font-weight: bold; border: 1px solid #BEBEBE; color: #626262; padding: 3px 8px; background-color: #F4F4F4; border-radius: 2px 2px 2px 2px; box-shadow: 0 0 2px #CCCCCC; }
 ul.yiiPager .selected a {background-color: #666666; border: 1px solid #666666; color: #FFFFFF;}
 
-#sidebar {float: right; width: 242px; border: 1px solid #E5E5E5; border-radius: 5px; background-color: #FFF;}
+#sidebar {float: right; width: 242px; border: 1px solid #E5E5E5; border-radius: 5px; background-color: #FFF; box-shadow: 1px 1px 5px #888888;}
 #sidebar:before, #sidebar:after {content: ""; display: block; height: 13px; width: 242px;}
 .sidebar_middle {padding-left: 15px; padding-right: 15px; width: 213px;}
 .nav-list {padding-left: 0; padding-right: 0;}
