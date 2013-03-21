@@ -21,7 +21,7 @@
                             <p class="topic-description">{{ topic.description }}</p>
                             <ul class="topic-meta">
                                 <li class="topic-meta-item"> Created by  {{ topic.created_by }}</li>
-                                <li class="topic-meta-item">on {{ topic.created|date:"j/n/y" }}</li>
+                                <li class="topic-meta-item">on {{ topic.created|date:"n/j/y" }}</li>
                                 <li class="topic-meta-item">{{ topic.posts|length }} posts</li>
                             </ul>
                         </div>

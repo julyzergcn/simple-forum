@@ -9,7 +9,7 @@
     <p class="topic-description">{{ current_topic.description }}</p>
     <ul class="topic-meta">
         <li class="topic-meta-item"> Created by  {{ current_topic.created_by }}</li>
-        <li class="topic-meta-item">on {{ current_topic.created|date:"j/n/y" }}</li>
+        <li class="topic-meta-item">on {{ current_topic.created|date:"n/j/y" }}</li>
         <li class="topic-meta-item">{{ current_topic.posts|length }} posts</li>
     </ul>
 </div>
@@ -24,7 +24,7 @@
             </div>
             <div class="comment-data" style="padding-left: 45px;">
                 <h4 class="comment-author"><a href="#">{{ post.created_by }}</a></h4>
-                <p class="comment-date">{{ post.created|date:"g:ia"|slice:":-1" }} on {{ post.created|date:"j/n/y" }}</p>
+                <p class="comment-date">{{ post.created|date:"g:ia"|slice:":-1" }} on {{ post.created|date:"n/j/y" }}</p>
                 <div class="comment-content">
                     {{ post.content|linkbreaks|safe }}
                 </div>
