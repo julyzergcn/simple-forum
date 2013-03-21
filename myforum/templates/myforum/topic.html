@@ -24,16 +24,18 @@
             </div>
             <div class="comment-data" style="padding-left: 45px;">
                 <h4 class="comment-author"><a href="#">{{ post.created_by }}</a></h4>
-                <p class="comment-date">{{ post.created|date:"g:ia"|slice:":-1" }} on {{ post.created|date:"n/j/y" }}</p>
-                <div class="comment-content">
+                <p class="comment-date">{{ post.modified|date:"g:ia"|slice:":-1" }} on {{ post.modified|date:"n/j/y" }}</p>
+                
+                <div class="comment-content" id="comment_{{ post.id }}">
                     {{ post.content|linkbreaks|safe }}
                 </div>
+                
                 <div style="height:16px; ">
                 <p class="comment-date" style="margin-right:15px; display:none" id="hide_{{ post.id }}">
                     <!--<a href="javascript:document.getElementById('new_post').focus().scrollIntoView(true)" style="color:#889099">Reply</a> &nbsp; &nbsp;-->
                     {% if user|can_edit:post %}
                         {% url 'myforum:edit_post' post.pk as edit_url %}
-                        <a href="#" onclick="edit_post('{{ edit_url }}')" style="color:#889099">Edit</a> &nbsp; &nbsp;
+                        <a href="#" onclick="edit_post_inline('{{ edit_url }}', 'comment_{{ post.id }}'); this.style.display='none'" style="color:#889099">Edit</a> &nbsp; &nbsp;
                     {% endif %}
                     {% if user|can_delete:post %}
                         <a href="{% url 'myforum:delete_post' post.pk %}" onclick="return confirm('Are you sure?')" style="color:#889099">Delete</a>
@@ -57,6 +59,11 @@
 </div>
 
 <script type="text/javascript">
+function edit_post_inline(edit_url, comment_id)
+{
+    document.getElementById(comment_id).innerHTML = '<iframe src="'+edit_url+'" width="620" height="200" frameborder="0" scrolling="no"></iframe>';
+}
+
 function edit_post(edit_url)
 {
     var new_window = window.open(edit_url, '_blank','width=600,height=400,location=0,menubar=0,status=0,toolbar=0');

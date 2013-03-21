@@ -153,7 +153,7 @@ def edit_post(request, pk):
         raise Http404('No rights to edit post')
     if request.method == 'POST' and 'content' in request.POST:
         post.content = request.POST['content']
-        post.save(update_fields=['content'])
+        post.save(update_fields=['content', 'modified'])
         context['saved'] = 'saved'
     
     return render(request, 'myforum/edit_post.html', context)

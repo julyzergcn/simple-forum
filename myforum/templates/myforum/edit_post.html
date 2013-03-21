@@ -3,14 +3,17 @@
 <div>
 <form method="post" action="">
     {% csrf_token %}
-    <textarea name="content" style="width:500px;height:200px;color:#889099">{{ post.content }}</textarea>
+    <textarea name="content" style="width:550px;height:170px;color:#889099">{{ post.content }}</textarea>
     <br />
-    <input type="submit" value="Update" />
+    <input type="submit" value="Save" />
 </form>
 </div>
 
 {% if saved %}
 <script type="text/javascript">
-window.close();
+//~ window.close();
+
+parent.document.location.reload();
+
 </script>
 {% endif %}
