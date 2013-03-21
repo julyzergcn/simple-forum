@@ -24,12 +24,12 @@
             </div>
             <div class="comment-data" style="padding-left: 45px;">
                 <h4 class="comment-author"><a href="#">{{ post.created_by }}</a></h4>
-                <p class="comment-date">{{ post.created|date:"j/n/y g:ia" }}</p>
+                <p class="comment-date">{{ post.created|date:"g:ia"|slice:":-1" }} on {{ post.created|date:"j/n/y" }}</p>
                 <div class="comment-content">
                     {{ post.content|linkbreaks|safe }}
                 </div>
                 <p class="comment-date" style="margin-right:15px">
-                    <a href="javascript:document.getElementById('new_post').focus().scrollIntoView(true)" style="color:#889099">Reply</a> &nbsp; &nbsp;
+                    <!--<a href="javascript:document.getElementById('new_post').focus().scrollIntoView(true)" style="color:#889099">Reply</a> &nbsp; &nbsp;-->
                     {% if user|can_edit:post %}
                         {% url 'myforum:edit_post' post.pk as edit_url %}
                         <a href="#" onclick="edit_post('{{ edit_url }}')" style="color:#889099">Edit</a> &nbsp; &nbsp;

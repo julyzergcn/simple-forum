@@ -41,3 +41,8 @@ class TopicAdmin(admin.ModelAdmin):
 admin.site.register(Topic, TopicAdmin)
 
 admin.site.register(UserProfile)
+
+
+from django.contrib.sites.models import Site
+
+admin.site.unregister(Site)

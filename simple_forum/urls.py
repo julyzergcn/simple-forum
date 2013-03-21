@@ -5,6 +5,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^forum/', include('myforum.urls', namespace='myforum')),
     url(r'^', include('myforum.urls', namespace='myforum')),
     
 )
