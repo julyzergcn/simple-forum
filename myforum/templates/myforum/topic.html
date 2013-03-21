@@ -23,7 +23,7 @@
                 <a href="#"><img class="avatar-img" src="{{ post.avatar_url }}" style="width:31px"></a>
             </div>
             <div class="comment-data" style="padding-left: 45px;">
-                <h4 class="comment-author"><a href="#">{{ post.created_by }}</a></h4>
+                <h4 class="comment-author">{{ post.created_by }}</h4>
                 <p class="comment-date">{{ post.modified|date:"g:ia"|slice:":-1" }} on {{ post.modified|date:"n/j/y" }}</p>
                 
                 <div class="comment-content" id="comment_{{ post.id }}">
